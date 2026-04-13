@@ -31,17 +31,19 @@ app.post("/webhook", async (req, res) => {
       ]
     });
 
-    await channel.send(`🛒 **Neue Bestellung!**
+    await channel.send({
+  content: `👋 <@${data.user_id}> <@1402410696771371139>
+
+🛒 **Neue Bestellung!**
 
 📦 Produkt: ${data.product_name || "Unbekannt"}
 👤 Kunde: ${data.customer_email || "Unbekannt"}
 
-💰 **Zahlung:**
-Sende das Geld hierhin:
-👉 PAYPAL / CRYPTO / etc
+💰 Bitte Wähle eine zahlung methode
+👉 CRYPTO / PAYSAFE / LITECOIN / GIFT CARD 
 
-📩 Nach Zahlung bitte hier schreiben!
-    `);
+📩 Schreibe zur Zahlung hier im Ticket!`
+});
 
     res.sendStatus(200);
   } catch (err) {
